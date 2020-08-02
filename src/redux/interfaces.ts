@@ -4,24 +4,42 @@ export interface IAction {
   error?: any;
 }
 
-interface IUserLoginData {
+export interface IUserData {
   login?: string;
   email?: string;
 }
 
-export interface IStudentState extends IUserLoginData { }
+export interface IUserLoginData {
+  login: string;
+  password: string;
+}
 
-export interface IParentState extends IUserLoginData { }
+export interface IUserStudentState extends IUserData { }
 
-export interface IEmployeeState extends IUserLoginData { }
+export interface IUserParentState extends IUserData { }
+
+export interface IUserEmployeeState extends IUserData { }
+
+export type IUserRole = 'guest' | 'student' | 'parent' | 'employee';
 
 export interface IUserState {
-  role: '' | 'guest' | 'student' | 'parent' | 'employee';
-  student: IStudentState;
-  parent: IParentState;
-  employee: IEmployeeState;
+  role: '' | IUserRole;
+  student: IUserStudentState;
+  parent: IUserParentState;
+  employee: IUserEmployeeState;
+  isFetching: boolean;
+  error: any;
+}
+
+export interface ISchoolInfoState {
+  name?: string;
+  logo?: string;
+  address?: string;
+  isFetching: boolean;
+  error: any;
 }
 
 export interface IStore {
   user: IUserState;
+  schoolInfo: ISchoolInfoState,
 }

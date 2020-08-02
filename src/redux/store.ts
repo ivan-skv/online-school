@@ -13,15 +13,18 @@ import {
 } from './interfaces';
 
 import * as user from './user'
+import * as schoolInfo from './schoolInfo'
 
 function* sagaInit(store: Store<IStore, IAction>) {
   yield all([
     user.userSaga.watchUser(store),
+    schoolInfo.schoolInfoSaga.watchSchoolInfo(store),
   ])
 }
 
 const combinedReducer: Reducer = combineReducers({
   user: persistReducer({ key: 'user', storage }, user.userReducer),
+  schoolInfo: persistReducer({ key: 'schoolInfo', storage }, schoolInfo.schoolInfoReducer),
 });
 
 const sagaMiddleware = createSagaMiddleware();
@@ -36,6 +39,8 @@ const persistor = persistStore(store, null, () => {
 });
 
 sagaMiddleware.run(sagaInit, store);
+
+persistor.purge();
 
 export {
   persistor,

@@ -5,10 +5,11 @@ import { AppContainer } from './src/screens'
 import { NavigationService } from './src/utils'
 
 import { persistor, store } from './src/redux/store';
+import Loading from 'src/components/Loading';
 
 const App = () => (
   <Provider store={store}>
-    <PersistGate loading={null} persistor={persistor}>
+    <PersistGate loading={<Loading />} persistor={persistor}>
       <AppContainer ref={NavigationService.setTopLevelNavigator} />
     </PersistGate>
   </Provider>

@@ -1,1 +1,6 @@
-export { Button } from './Button'
+export { default as Button } from './Button'
+export { default as BottomTabBar } from './BottomTabBar'
+export { default as TabBarIcon } from './TabBarIcon'
+export { default as TabBarLabel } from './TabBarLabel'
+export { default as ScreenWrapper } from './ScreenWrapper'
+export { default as Icon } from './Icon'

@@ -1,0 +1,33 @@
+diff --git a/node_modules/react-native-progress/index.d.ts b/node_modules/react-native-progress/index.d.ts
+index 30c8ae0..20926e9 100644
+--- a/node_modules/react-native-progress/index.d.ts
++++ b/node_modules/react-native-progress/index.d.ts
+@@ -342,6 +342,15 @@ declare module 'react-native-progress' {
+      */
+     spinDuration?: number;
+ 
++    /**
++     * Direction of the circle `clockwise` or `counter-clockwise`.
++     *
++     * @type {('clockwise' | 'counter-clockwise')}
++     * @memberof CirclePropTypes
++     * @default clockwise
++     */
++    direction?: 'clockwise' | 'counter-clockwise';
++
+     /**
+      * Stroke Cap style for the circle `butt`, `square` or `round`
+      *
+@@ -352,8 +361,8 @@ declare module 'react-native-progress' {
+     strokeCap?: 'butt' | 'square' | 'round';
+   }
+ 
+-  export class Bar extends React.Component<BarPropTypes> {}
+-  export class Circle extends React.Component<CirclePropTypes> {}
+-  export class Pie extends React.Component<PiePropTypes> {}
+-  export class CircleSnail extends React.Component<CircleSnailPropTypes> {}
++  export class Bar extends React.Component<BarPropTypes> { }
++  export class Circle extends React.Component<CirclePropTypes> { }
++  export class Pie extends React.Component<PiePropTypes> { }
++  export class CircleSnail extends React.Component<CircleSnailPropTypes> { }
+ }

@@ -2,8 +2,9 @@ import {
   Animated,
   Easing,
 } from 'react-native';
+import { TransitionConfig } from 'react-navigation'
 
-const CollapseExpand = (index: any, position: any): any => {
+const CollapseExpand = (index: any, position: any) => {
   const inputRange: ReadonlyArray<any> = [index - 1, index, index + 1];
   const opacity = position.interpolate({
     inputRange,
@@ -33,7 +34,7 @@ const SlideFromRight = (index: any, position: any, width: any) => {
   return slideFromRight;
 };
 
-const transitionConfig = () => {
+const transitionConfig = (): TransitionConfig => {
   return {
     transitionSpec: {
       duration: 300,

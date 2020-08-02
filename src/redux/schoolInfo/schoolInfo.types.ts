@@ -1,0 +1,7 @@
+const schoolInfoTypes = {
+  GET_SCHOOL_INFO: 'GET_SCHOOL_INFO',
+  SET_SCHOOL_INFO: 'SET_SCHOOL_INFO',
+  SET_SCHOOL_INFO_ERROR: 'SET_SCHOOL_INFO_ERROR',
+}
+
+export { schoolInfoTypes }
