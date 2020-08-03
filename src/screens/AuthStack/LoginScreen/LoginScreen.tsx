@@ -2,8 +2,9 @@ import React from 'react';
 import { NavigationInjectedProps } from 'react-navigation'
 import { IUserState } from 'src/redux/interfaces';
 import { userActions } from 'src/redux/user'
-import { SafeAreaView, ViewStyle, Text } from 'react-native';
-import { Button } from 'src/components';
+import { SafeAreaView, ViewStyle, Text, View } from 'react-native';
+import { Button, Input } from 'src/components';
+import { Footer } from 'src/components/Footer';
 
 interface Props extends NavigationInjectedProps {
   user: IUserState;
@@ -14,19 +15,67 @@ interface Props extends NavigationInjectedProps {
 }
 
 export default class LoginScreen extends React.Component<Props> {
+  state = {
+    login: '',
+    password: '',
+  }
+
+  onLoginChange = (value) => {
+    this.setState({ login: value });
+  }
+
+  onPassChange = (value) => {
+    this.setState({ password: value });
+  }
+
   render(): JSX.Element {
+    console.log(this.props.navigation.navigate)
     const { navigation } = this.props;
-    console.log('navigation: ', navigation);
+    const { login } = this.state;
+    // console.log('navigation: ', navigation);
     return <>
       <SafeAreaView style={styles.container}>
-        <Text>Login screen</Text>
+        {/* <Text>Login screen</Text> */}
+        <Input 
+          placeholder='Логин'
+          onChangeText={this.onLoginChange}
+          style={{ marginBottom: 37 }}
+        />
+        <Input 
+          placeholder='Пароль'
+          onChangeText={this.onPassChange}
+          secureTextEntry={true}
+          style={{ marginBottom: 37 }}
+        />
+        <View style={{ flexDirection: 'row' }}>
+          <Button
+            buttonType='filled'
+            onPress={() => {
+              console.log('pressed')
+              navigation.navigate('Main', { login });
+            }}
+          >
+            <Text>Войти</Text>
+          </Button>
+          <Button
+            buttonType={'transparent'}
+            onPress={() => {
+              console.log('pressed')
+              navigation.navigate('Recovery', { foo: 1 });
+            }}
+          >
+            <Text>Забыли пароль?</Text>
+          </Button>
+        </View>
+        <View style={{ flex: 1 }} />
         <Button
+          buttonType={'transparent'}
           onPress={() => {
             console.log('pressed')
-            navigation.navigate('Recovery', { foo: 1 });
           }}
+          style={{ flex: 0, marginBottom: 60, alignSelf: 'center' }}
         >
-          <Text>{'Забыли пароль'}</Text>
+          <Text style={{ textDecorationLine: 'underline' }}>{'Продолжить как гость'}</Text>
         </Button>
       </SafeAreaView>
     </>;
@@ -38,5 +87,6 @@ const styles: {
 } = {
   container: {
     flex: 1,
+    marginHorizontal: 30,
   },
 };
